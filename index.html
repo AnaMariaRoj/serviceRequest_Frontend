@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitud de Examen Médico</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; background-color: #f4f4f4; }
+    form { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    label { font-weight: bold; }
+    input, select { width: 100%; padding: 8px; margin: 5px 0 15px; border-radius: 4px; border: 1px solid #ccc; }
+    button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    button:disabled { background-color: #ccc; }
+  </style>
+</head>
+<body>
+
+  <h1>Solicitud de Examen Médico</h1>
+
+  <form id="examRequestForm">
+    <fieldset>
+      <legend>Información del Paciente</legend>
+      <label for="name">Nombre del Paciente:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="identifierValue">Número de Documento:</label>
+      <input type="text" id="identifierValue" name="identifierValue" required>
+    </fieldset>
+
+    <fieldset>
+      <legend>Examen Solicitado</legend>
+      <label for="examType">Tipo de Examen:</label>
+      <select id="examType" name="examType" required>
+        <option value="LAB">Laboratorio Clínico</option>
+        <option value="RAD">Rayos X</option>
+        <option value="MRI">Resonancia Magnética</option>
+        <option value="CT">Tomografía</option>
+        <option value="ULTR">Ultrasonido</option>
+      </select>
+
+      <label for="notes">Notas del Médico:</label>
+      <input type="text" id="notes" name="notes" placeholder="Ej: Ayuno de 8 horas" required>
+    </fieldset>
+
+    <button type="submit">Enviar Solicitud</button>
+  </form>
+
+  <div id="message"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
