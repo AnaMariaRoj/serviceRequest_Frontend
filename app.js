@@ -13,7 +13,7 @@ document.getElementById("examRequestForm").addEventListener("submit", async func
         code: {
             coding: [
                 {
-                    system: "http://terminology.hl7.org/CodeSystem/service-type",
+                    system: "http://loinc.org",
                     code: examType,
                     display: examType
                 }
@@ -30,10 +30,14 @@ document.getElementById("examRequestForm").addEventListener("submit", async func
                 text: notes
             }
         ],
+        requester: {
+            reference: "Practitioner/12345",
+            display: "Dr. Juan Pérez"
+        },
         identifier: [
             {
                 system: "https://hospital.com/serviceRequest",
-                value: crypto.randomUUID()
+                value: self.crypto.randomUUID()
             }
         ]
     };
