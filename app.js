@@ -39,7 +39,7 @@ document.getElementById("examRequestForm").addEventListener("submit", async func
     };
 
     try {
-        const response = await fetch("https://agendarcita-backend.onrender.com/service-request", {
+        const response = await fetch("https://servicerequest-backend.onrender.com/service-request", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
