@@ -5,12 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solicitud de Examen Médico</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; background-color: #f4f4f4; }
-    form { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    label { font-weight: bold; }
-    input, select { width: 100%; padding: 8px; margin: 5px 0 15px; border-radius: 4px; border: 1px solid #ccc; }
-    button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
-    button:disabled { background-color: #ccc; }
+    body { 
+        font-family: Arial, sans-serif; 
+        margin: 20px; 
+        padding: 20px; 
+        background-color: #f4f4f4; 
+    }
+    form { 
+        background: white; 
+        padding: 20px; 
+        border-radius: 8px; 
+        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        max-width: 600px; /* Limita el ancho del formulario */
+        margin: 0 auto; /* Centra el formulario */
+    }
+    fieldset {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    legend {
+        font-weight: bold;
+        color: #333;
+        padding: 0 10px;
+    }
+    label { 
+        font-weight: bold; 
+        display: block; /* Asegura que la etiqueta esté en su propia línea */
+        margin-bottom: 5px;
+    }
+    input, select, textarea { /* Añadido textarea por si usas uno para notas en el futuro */
+        width: calc(100% - 16px); /* 100% menos padding para tener en cuenta el borde y el padding */
+        padding: 8px; 
+        margin-top: 5px; 
+        margin-bottom: 15px; 
+        border-radius: 4px; 
+        border: 1px solid #ccc; 
+        box-sizing: border-box; /* Incluye padding y border en el ancho total */
+    }
+    button { 
+        width: 100%; 
+        padding: 10px; 
+        background-color: #007bff; 
+        color: white; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+        font-size: 16px; 
+        transition: background-color 0.3s ease; /* Transición suave para hover */
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    button:disabled { 
+        background-color: #ccc; 
+        cursor: not-allowed;
+    }
+    /* Estilos para el div de mensajes (éxito/error) */
+    #message {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: bold;
+        display: none; /* Por defecto oculto */
+        max-width: 600px; /* Centra también el mensaje */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #message.success {
+        background-color: #d4edda; /* Verde claro */
+        color: #155724; /* Verde oscuro */
+        border: 1px solid #c3e6cb;
+    }
+    #message.error {
+        background-color: #f8d7da; /* Rojo claro */
+        color: #721c24; /* Rojo oscuro */
+        border: 1px solid #f5c6cb;
+    }
   </style>
 </head>
 <body>
