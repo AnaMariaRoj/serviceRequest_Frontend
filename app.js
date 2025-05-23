@@ -54,7 +54,7 @@ document.getElementById("examRequestForm").addEventListener("submit", async func
     try {
         // 3. Enviar la solicitud POST al backend
         // Asegúrate de que esta URL sea la correcta de tu backend desplegado en Render
-        const response = await fetch("https://servicerequest-backend.onrender.com/serviceRequest", { 
+        const response = await fetch("https://servicerequest-backend.onrender.com/servicerequest", { 
             method: "POST",
             headers: {
                 "Content-Type": "application/json" // Indica que el cuerpo de la solicitud es JSON
