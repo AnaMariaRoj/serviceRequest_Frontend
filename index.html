@@ -1,155 +1,158 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solicitud de Examen Médico</title>
-  <style>
-    body { 
-        font-family: Arial, sans-serif; 
-        margin: 20px; 
-        padding: 20px; 
-        background-color: #f4f4f4; 
-    }
-    form { 
-        background: white; 
-        padding: 20px; 
-        border-radius: 8px; 
-        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
-        max-width: 600px; /* Limita el ancho del formulario */
-        margin: 0 auto; /* Centra el formulario */
-    }
-    fieldset {
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-    legend {
-        font-weight: bold;
-        color: #333;
-        padding: 0 10px;
-    }
-    label { 
-        font-weight: bold; 
-        display: block; /* Asegura que la etiqueta esté en su propia línea */
-        margin-bottom: 5px;
-    }
-    input, select, textarea { /* Añadido textarea por si usas uno para notas en el futuro */
-        width: calc(100% - 16px); /* 100% menos padding para tener en cuenta el borde y el padding */
-        padding: 8px; 
-        margin-top: 5px; 
-        margin-bottom: 15px; 
-        border-radius: 4px; 
-        border: 1px solid #ccc; 
-        box-sizing: border-box; /* Incluye padding y border en el ancho total */
-    }
-    button { 
-        width: 100%; 
-        padding: 10px; 
-        background-color: #007bff; 
-        color: white; 
-        border: none; 
-        border-radius: 5px; 
-        cursor: pointer; 
-        font-size: 16px; 
-        transition: background-color 0.3s ease; /* Transición suave para hover */
-    }
-    button:hover {
-        background-color: #0056b3;
-    }
-    button:disabled { 
-        background-color: #ccc; 
-        cursor: not-allowed;
-    }
-    /* Estilos para el div de mensajes (éxito/error) */
-    #message {
-        margin-top: 20px;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-        font-weight: bold;
-        display: none; /* Por defecto oculto */
-        max-width: 600px; /* Centra también el mensaje */
-        margin-left: auto;
-        margin-right: auto;
-    }
-    #message.success {
-        background-color: #d4edda; /* Verde claro */
-        color: #155724; /* Verde oscuro */
-        border: 1px solid #c3e6cb;
-    }
-    #message.error {
-        background-color: #f8d7da; /* Rojo claro */
-        color: #721c24; /* Rojo oscuro */
-        border: 1px solid #f5c6cb;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Examen Médico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        legend {
+            font-weight: bold;
+            color: #333;
+            padding: 0 10px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        /* Unificar estilos para input, select y textarea */
+        input[type="text"], 
+        select, 
+        textarea { /* Ahora incluye textarea */
+            width: calc(100% - 16px); /* 100% menos padding para tener en cuenta el borde y el padding */
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box; /* Incluye padding y border en el ancho total */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        /* Estilos para el div de mensajes (éxito/error) */
+        #message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            display: none; /* Por defecto oculto */
+            max-width: 600px; /* Centra también el mensaje */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #message.success {
+            background-color: #d4edda; /* Verde claro */
+            color: #155724; /* Verde oscuro */
+            border: 1px solid #c3e6cb;
+        }
+        #message.error {
+            background-color: #f8d7da; /* Rojo claro */
+            color: #721c24; /* Rojo oscuro */
+            border: 1px solid #f5c6cb;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>Solicitud de Examen Médico</h1>
+    <h1>Solicitud de Examen Médico</h1>
 
-  <form id="examRequestForm">
-    <fieldset>
-      <legend>Información del Paciente</legend>
-      <label for="name">Nombre del Paciente:</label>
-      <input type="text" id="name" name="name" required>
+    <form id="examRequestForm">
+        <fieldset>
+            <legend>Información del Paciente</legend>
+            <label for="name">Nombre del Paciente:</label>
+            <input type="text" id="name" name="name" required>
 
-      <label for="identifierValue">Número de Documento:</label>
-      <input type="text" id="identifierValue" name="identifierValue" required>
-    </fieldset>
+            <label for="identifierValue">Número de Documento:</label>
+            <input type="text" id="identifierValue" name="identifierValue" required>
+        </fieldset>
 
-    <fieldset>
-      <legend>Examen Solicitado</legend>
-      <label for="examType">Tipo de Examen:</label>
-      <select id="examType" name="examType" required>
-        <option value="57021-8|Hemograma completo (CBC)">Hemograma completo (CBC)</option>
-        <option value="24331-1|Perfil lipídico">Perfil lipídico</option>
-        <option value="24325-3|Pruebas de función hepática">Pruebas de función hepática</option>
-        <option value="24362-5|Pruebas de función renal">Pruebas de función renal</option>
-        <option value="2345-7|Glucosa en sangre">Glucosa en sangre</option>
-        <option value="4548-4|Hemoglobina A1c">Hemoglobina A1c</option>
-        <option value="3016-3|Hormona TSH">Hormona TSH</option>
-        <option value="94531-1|Panel viral">Panel viral</option>
-        <option value="18769-0|Análisis de heces">Análisis de heces</option>
-        <option value="5804-0|Análisis de orina">Análisis de orina</option>
-        <option value="600-7|Cultivo bacteriano">Cultivo bacteriano</option>
-        <option value="19080-1|Prueba de embarazo">Prueba de embarazo</option>
-        <option value="5671-3|Prueba de VIH">Prueba de VIH</option>
-        <option value="48065-7|D-dímero">D-dímero</option>
-        <option value="24356-7|Marcadores tumorales">Marcadores tumorales</option>
-        <option value="34535-5|Pruebas de coagulación (INR, PT, aPTT)">Pruebas de coagulación (INR, PT, aPTT)</option>
-        <option value="17780-8|Prueba de H. pylori">Prueba de H. pylori</option>
-        <option value="24319-6|Panel de vitaminas">Panel de vitaminas (D, B12, etc.)</option>
-        <option value="2498-4|Perfil de hierro">Perfil de hierro</option>
-        <option value="2143-6|Cortisol en sangre">Cortisol en sangre</option>
-        <option value="24357-5|Panel hormonal">Panel hormonal</option>
-        <option value="34534-8|Electrocardiograma">Electrocardiograma</option>
-        <option value="89604-2|Electroencefalograma">Electroencefalograma</option>
-        <option value="18044-3|Ecocardiograma">Ecocardiograma</option>
-        <option value="81235-0|Doppler">Doppler</option>
-        <option value="60567-0|Biopsia">Biopsia</option>
-        <option value="24606-6|Mamografía">Mamografía</option>
-        <option value="38269-7|Densitometría ósea">Densitometría ósea</option>
-        <option value="34071-3|PET">Tomografía por emisión de positrones (PET)</option>
-        <option value="34127-3|SPECT">SPECT</option>
-        <option value="18745-0|Ventilación-perfusión (VQ) scan">Ventilación-perfusión (VQ) scan</option>
-        <option value="46394-1|Angiografía">Angiografía</option>
-        <option value="29245-6|Urografía">Urografía</option>
-        <option value="30746-4|Endoscopia">Endoscopia</option>
-        <option value="24627-2|CTPA">Angiografía por tomografía computarizada (CTPA)</option>
-      </select>
+        <fieldset>
+            <legend>Examen Solicitado</legend>
+            <label for="examType">Tipo de Examen:</label>
+            <select id="examType" name="examType" required>
+                <option value="57021-8|Hemograma completo (CBC)">Hemograma completo (CBC)</option>
+                <option value="24331-1|Perfil lipídico">Perfil lipídico</option>
+                <option value="24325-3|Pruebas de función hepática">Pruebas de función hepática</option>
+                <option value="24362-5|Pruebas de función renal">Pruebas de función renal</option>
+                <option value="2345-7|Glucosa en sangre">Glucosa en sangre</option>
+                <option value="4548-4|Hemoglobina A1c">Hemoglobina A1c</option>
+                <option value="3016-3|Hormona TSH">Hormona TSH</option>
+                <option value="94531-1|Panel viral">Panel viral</option>
+                <option value="18769-0|Análisis de heces">Análisis de heces</option>
+                <option value="5804-0|Análisis de orina">Análisis de orina</option>
+                <option value="600-7|Cultivo bacteriano">Cultivo bacteriano</option>
+                <option value="19080-1|Prueba de embarazo">Prueba de embarazo</option>
+                <option value="5671-3|Prueba de VIH">Prueba de VIH</option>
+                <option value="48065-7|D-dímero">D-dímero</option>
+                <option value="24356-7|Marcadores tumorales">Marcadores tumorales</option>
+                <option value="34535-5|Pruebas de coagulación (INR, PT, aPTT)">Pruebas de coagulación (INR, PT, aPTT)</option>
+                <option value="17780-8|Prueba de H. pylori">Prueba de H. pylori</option>
+                <option value="24319-6|Panel de vitaminas">Panel de vitaminas (D, B12, etc.)</option>
+                <option value="2498-4|Perfil de hierro">Perfil de hierro</option>
+                <option value="2143-6|Cortisol en sangre">Cortisol en sangre</option>
+                <option value="24357-5|Panel hormonal">Panel hormonal</option>
+                <option value="34534-8|Electrocardiograma">Electrocardiograma</option>
+                <option value="89604-2|Electroencefalograma">Electroencefalograma</option>
+                <option value="18044-3|Ecocardiograma">Ecocardiograma</option>
+                <option value="81235-0|Doppler">Doppler</option>
+                <option value="60567-0|Biopsia">Biopsia</option>
+                <option value="24606-6|Mamografía">Mamografía</option>
+                <option value="38269-7|Densitometría ósea">Densitometría ósea</option>
+                <option value="34071-3|PET">Tomografía por emisión de positrones (PET)</option>
+                <option value="34127-3|SPECT">SPECT</option>
+                <option value="18745-0|Ventilación-perfusión (VQ) scan">Ventilación-perfusión (VQ) scan</option>
+                <option value="46394-1|Angiografía">Angiografía</option>
+                <option value="29245-6|Urografía">Urografía</option>
+                <option value="30746-4|Endoscopia">Endoscopia</option>
+                <option value="24627-2|CTPA">Angiografía por tomografía computarizada (CTPA)</option>
+            </select>
 
-      <label for="notes">Notas del Médico:</label>
-      <input type="text" id="notes" name="notes" placeholder="Ej: Ayuno de 8 horas" required>
-    </fieldset>
+            <label for="notes">Notas del Médico:</label>
+            <textarea id="notes" name="notes" placeholder="Ej: Ayuno de 8 horas, historial de alergias" rows="3"></textarea>
+            </fieldset>
 
-    <button type="submit">Enviar Solicitud</button>
-  </form>
+        <button type="submit">Enviar Solicitud</button>
+    </form>
 
-  <div id="message"></div>
+    <div id="message"></div>
 
-  <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
