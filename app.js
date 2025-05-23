@@ -27,7 +27,6 @@ document.getElementById("examRequestForm").addEventListener("submit", async func
                     display: examDisplay // Nombre legible del examen
                 }
             ],
-            text: examDisplay // Texto legible para el usuario
         },
         subject: { // Referencia al paciente que necesita el examen
             reference: `Patient/${identifierValue}`, // Asume que el paciente puede ser identificado por su documento
